@@ -11,6 +11,31 @@
     <link rel="stylesheet" href="assets/styles/style.css">
 
     <title>Rosie Odenkirk</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+        (function () {
+            emailjs.init({
+                publicKey: "s_s2QVN1df0l1Qggb",
+            });
+            emailjs.sendForm('Gmail', 'rosie', this);
+        })();
+    </script>
+    <script type="text/javascript">
+        window.onload = function () {
+            document.getElementById('contact-form').addEventListener('submit', function (event) {
+                event.preventDefault();
+                // these IDs from the previous steps
+                emailjs.sendForm('Gmail', 'rosie', "#contact-form")
+                    .then(() => {
+                        console.log('SUCCESS!');
+                    }, (error) => {
+                        console.log('FAILED...', error);
+                    });
+            });
+        }
+    </script>
+
 </head>
 
 <body>
@@ -63,17 +88,30 @@
                 <h3 class="contact-heading uppercase text-center">Got a Project in mind?</h3>
                 <h5 class="uppercase text-center">Let's work togethor!</h5>
                 <div class="center-form">
-                    <form action=""></form>
-                    <input type="text" name="name" id="fullname" class="form-control" placeholder="Name" required>
-                    <input type="email" name="email" id="emailaddress" class="form-control" placeholder="Email"
-                        required>
-                    <textarea name="projectsummary" id="projectsummary" rows="5"
-                        placeholder="Project description"></textarea>
-                    <div class="form-row text-center">
-                        <div class="col">
-                            <button type="submit" class="btn btn-secondary">Send Project Request</button>
+
+                    <form id="contact-form">
+                        <input type="hidden" name="contact_number" value="697483">
+                        <input type="text" name="name" id="fullname" class="form-control" placeholder="Name" required>
+                        <input type="email" name="email" id="emailaddress" class="form-control" placeholder="Email"
+                            required>
+                        <textarea name="projectsummary" id="projectsummary" rows="5"
+                            placeholder="Project description"></textarea>
+                        <div class="form-row text-center">
+                            <div class="col">
+                                <button type="submit" class="btn btn-secondary">Send Project Request</button>
+                            </div>
                         </div>
-                    </div>
+                    </form>
+                    <!-- <form id="contact-form">
+
+                        <label>Name</label>
+                        <input type="text" name="user_name"> 
+                        <label>Email</label>
+                        <input type="email" name="user_email">
+                        <label>Message</label>
+                        <textarea name="message"></textarea>
+                        <input type="submit" value="Send">
+                    </form> -->
 
 
                 </div>
@@ -142,5 +180,6 @@
     </footer>
 </body>
 <script src="https://kit.fontawesome.com/47ce1b6aad.js" crossorigin="anonymous"></script>
+
 
 </html>
